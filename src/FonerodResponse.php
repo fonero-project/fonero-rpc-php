@@ -1,10 +1,10 @@
 <?php
 
-namespace Denpa\Bitcoin;
+namespace FoneroRPC\Fonero;
 
 use Psr\Http\Message\ResponseInterface;
 
-class BitcoindResponse implements
+class FonerodResponse implements
     ResponseInterface,
     \ArrayAccess,
     \Countable,
@@ -160,7 +160,7 @@ class BitcoindResponse implements
      *
      * @param \Psr\Http\Message\ResponseInterface $response
      *
-     * @return \Denpa\Bitcoin\BitcoindResponse
+     * @return \FoneroRPC\Fonero\FonerodResponse
      */
     public static function createFrom(ResponseInterface $response)
     {

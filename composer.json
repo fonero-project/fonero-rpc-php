@@ -1,9 +1,9 @@
 {
-    "name": "denpa/php-bitcoinrpc",
+    "name": "fonero-project/fonero-rpc-php",
     "type": "library",
-    "description": "Bitcoin JSON-RPC client based on GuzzleHttp",
-    "keywords": ["bitcoin","api","jsonrpc","guzzle"],
-    "homepage": "https://github.com/denpamusic/php-bitcoinrpc",
+    "description": "Fonero JSON-RPC client based on GuzzleHttp",
+    "keywords": ["fonero","api","jsonrpc","guzzle"],
+    "homepage": "https://github.com/fonero-project/fonero-rpc-php",
     "license": "MIT",
     "authors": [
         {
@@ -21,7 +21,7 @@
     },
     "autoload": {
         "psr-4" : {
-            "Denpa\\Bitcoin\\": "src"
+            "FoneroRPC\\Fonero\\": "src"
         },
         "classmap" : [
             "tests"

@@ -1,6 +1,6 @@
 <?php
 
-namespace Denpa\Bitcoin;
+namespace FoneroRPC\Fonero;
 
 trait ResponseArrayTrait
 {
@@ -271,16 +271,25 @@ trait ResponseArrayTrait
      */
     protected function parseKey($key, callable $callback, $result = null)
     {
-        $parts = is_array($key) ? $key : explode('.', trim($key, '.'));
+        $parts = explode('.', trim($key, '.'));
         $result = $result ?: $this->result();
 
-        while (!is_null($part = array_shift($parts))) {
+        foreach ($parts as $index => $part) {
             if ($part == '*') {
-                array_walk($result, function (&$value) use ($parts, $callback) {
-                    $value = $this->parseKey($parts, $callback, $value);
-                });
+                $sub = [];
 
-                return $result;
+                foreach (array_keys($result) as $subKey) {
+                    $path = $subKey;
+
+                    if (isset($parts[$index + 1])) {
+                        $pathParts = array_slice($parts, $index + 1);
+                        $path .= '.'.implode('.', $pathParts);
+                    }
+
+                    $sub[$subKey] = $this->parseKey($path, $callback, $result);
+                }
+
+                return $sub;
             }
 
             if (!$return = $callback($part, $result)) {

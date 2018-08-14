@@ -1,6 +1,6 @@
 <?php
 
-namespace Denpa\Bitcoin;
+namespace FoneroRPC\Fonero;
 
 use Psr\Http\Message\StreamInterface;
 

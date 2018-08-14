@@ -1,6 +1,6 @@
 <?php
 
-namespace Denpa\Bitcoin\Exceptions;
+namespace FoneroRPC\Fonero\Exceptions;
 
 use RuntimeException;
 

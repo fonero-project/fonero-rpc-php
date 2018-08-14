@@ -1,10 +1,10 @@
 <?php
 
-use Denpa\Bitcoin;
-use Denpa\Bitcoin\Exceptions;
+use FoneroRPC\Fonero;
+use FoneroRPC\Fonero\Exceptions;
 use GuzzleHttp\Psr7\BufferStream;
 
-class BitcoindResponseTest extends TestCase
+class FonerodResponseTest extends TestCase
 {
     /**
      * Set up test.
@@ -16,7 +16,7 @@ class BitcoindResponseTest extends TestCase
         parent::setUp();
 
         $this->guzzleResponse = $this->getBlockResponse();
-        $this->response = Bitcoin\BitcoindResponse::createFrom($this->guzzleResponse);
+        $this->response = Fonero\FonerodResponse::createFrom($this->guzzleResponse);
         $this->response = $this->response->withHeader('X-Test', 'test');
     }
 
@@ -35,7 +35,7 @@ class BitcoindResponseTest extends TestCase
 
     public function testNoResult()
     {
-        $response = Bitcoin\BitcoindResponse::createFrom(
+        $response = Fonero\FonerodResponse::createFrom(
             $this->rawTransactionError()
         );
 
@@ -64,15 +64,15 @@ class BitcoindResponseTest extends TestCase
     {
         $guzzleResponse = $this->getBlockResponse();
 
-        $response = Bitcoin\BitcoindResponse::createFrom($guzzleResponse);
+        $response = Fonero\FonerodResponse::createFrom($guzzleResponse);
 
-        $this->assertInstanceOf(Bitcoin\BitcoindResponse::class, $response);
+        $this->assertInstanceOf(Fonero\FonerodResponse::class, $response);
         $this->assertEquals($response->response(), $guzzleResponse);
     }
 
     public function testError()
     {
-        $response = Bitcoin\BitcoindResponse::createFrom(
+        $response = Fonero\FonerodResponse::createFrom(
             $this->rawTransactionError()
         );
 
@@ -362,7 +362,7 @@ class BitcoindResponseTest extends TestCase
     public function testSerialize()
     {
         $serializedContainer = serialize($this->response->getContainer());
-        $class = Bitcoin\BitcoindResponse::class;
+        $class = Fonero\FonerodResponse::class;
 
         $serialized = sprintf(
             'C:%u:"%s":%u:{%s}',
