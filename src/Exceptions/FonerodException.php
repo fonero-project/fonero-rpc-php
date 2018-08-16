@@ -7,7 +7,7 @@ use RuntimeException;
 class FonerodException extends RuntimeException
 {
     /**
-     * Construct new azartd exception.
+     * Construct new fonerod exception.
      *
      * @param object $error
      *
